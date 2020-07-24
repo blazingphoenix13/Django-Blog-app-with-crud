@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Create your blog here</h1>
+    <form method='POST' action='/'>
+        {% csrf_token %}
+            <div> Title {{ form.title }}</div>
+            <div> Description{{ form.description }}</div>
+        <div><input type="submit" name="Create new Blog" value="Create new Blog"></div>
+    </form>
+
+
+    {%for i in blog%}
+    <div>
+        <h3><b>{{ i.id }} -- {{ i.title }}</b></h3>
+        <p>{{ i.description }}</p>
+        <a href="{% url 'delete' i.id %}">Delete</a>
+        <a href="{% url 'update' i.id %}">Update</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
